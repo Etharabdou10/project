@@ -1,38 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-
-@include('admin.includes.head')
-
-<body>
-@include('admin.includes.header')
-
+@extends('admin.layouts.main')
+@section('content_addtes')
   <div class="container my-5">
     <div class="mx-2">
       <h2 class="fw-bold fs-2 mb-5 pb-2">Add Testimonial</h2>
-      <form action="" method="" class="px-md-5">
+      <form action="{{route('testimonials.store')}}" method="POST" class="px-md-5" enctype="multipart/form-data">
+      @csrf
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Name:</label>
           <div class="col-md-10">
-            <input type="text" placeholder="e.g. Jhon Doe" class="form-control py-2" />
+            <input type="text" placeholder="" class="form-control py-2" name="tes_name" value="{{old('tes_name')}}" />
+            @error('tes_name')
+              <div class="alert alert-warning">{{$message}}</div>
+            @enderror
           </div>
         </div>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Content:</label>
           <div class="col-md-10">
-            <textarea name="" id="" rows="5" class="form-control"></textarea>
+            <textarea name="content" id="" rows="5" class="form-control">{{old('content')}}</textarea>
+            @error('content')
+              <div class="alert alert-warning">{{$message}}</div>
+            @enderror
           </div>
         </div>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Published:</label>
           <div class="col-md-10">
-            <input type="checkbox" class="form-check-input" style="padding: 0.7rem;" />
+            <input type="checkbox" class="form-check-input" style="padding: 0.7rem;" name="published" value="1" @checked(old('published'))/ />
           </div>
         </div>
         <hr>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Image:</label>
           <div class="col-md-10">
-            <input type="file" class="form-control" style="padding: 0.7rem;" />
+            <input type="file" class="form-control" style="padding: 0.7rem;" name="image" />
+            @error('image')
+              <div class="alert alert-warning">{{$message}}</div>
+            @enderror
           </div>
         </div>
         <div class="text-md-end">
@@ -44,10 +48,4 @@
     </div>
   </div>
   </main>
-  <script src="{{asset('admin/js/jquery.min.js')}}"></script>
-  <script src="{{asset('admin/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('admin/js/dataTables.min.js')}}"></script>
-  <script src="{{asset('admin/js/tables.js')}}"></script>
-</body>
-
-</html>
+  @endsection('content_addtes')

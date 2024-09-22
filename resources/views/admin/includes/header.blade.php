@@ -22,11 +22,11 @@
                   <div class="dropdown-header text-center">
                     <img class="img-md rounded-circle" src="{{asset('admin/images/avatar-default.svg')}}" alt="Profile image"
                       width="80" height="80" />
-                    <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                    <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                    <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->username }}</p>
+                    <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                   </div>
                   <a class="dropdown-item">My Profile</a>
-                  <a class="dropdown-item">Sign Out</a>
+                  <a class="dropdown-item" href="http://127.0.0.1:8000/logout">log out</a>
                   <p class="footer" style="padding-top: 15px; font-size: 9px; text-align: center">
                     Privacy Policy . Terms . Cookies
                   </p>
@@ -52,11 +52,11 @@
                 USERS
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="add_user.html">Add user</a></li>
+                <li><a class="dropdown-item" href="{{route('users.create')}}">Add user</a></li>
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="users.html">All users</a></li>
+                <li><a class="dropdown-item" href="{{route('users.index')}}">All users</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -65,11 +65,11 @@
                 TOPICS
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="add_topic.html">Add topic</a></li>
+                <li><a class="dropdown-item" href="{{route('topics.create')}}">Add topic</a></li>
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="topics.html">All topics</a></li>
+                <li><a class="dropdown-item" href="{{route('topics.index')}}">All topics</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -78,11 +78,11 @@
                 CATEGORIES
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="add_category.html">Add category</a></li>
+                <li><a class="dropdown-item" href="{{route('categories.create')}}">Add category</a></li>
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="categories.html">All categories</a></li>
+                <li><a class="dropdown-item" href="{{route('categories.index')}}">All categories</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -91,14 +91,14 @@
                 TESTIMONIALS
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="add_testimonial.html">Add testimonial</a></li>
+                <li><a class="dropdown-item" href="{{route('testimonials.create')}}">Add testimonial</a></li>
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="testimonials.html">All testimonials</a></li>
+                <li><a class="dropdown-item" href="{{route('testimonials.index')}}">All testimonials</a></li>
               </ul>
             </li>
-            <li><a class="nav-item nav-link" href="messages.html">MESSAGES</a></li>
+            <li><a class="nav-item nav-link" href="{{route('messages.index')}}">MESSAGES</a></li>
           </ul>
         </div>
       </div>

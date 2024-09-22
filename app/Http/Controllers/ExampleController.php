@@ -33,4 +33,25 @@ class ExampleController extends Controller
     public function au(){
         return view('admin/add_user');
     }
+    public function mess(){
+        return view('admin/message_details');
+    }
+    public function at(){
+        return view('admin/add_user');
+    }
+    public function login(){
+        return view('admin/login');
+    }
+    public function reg(){
+        return view('admin/register');
+    }
+    public function topdet(){
+        return view('public/topics-detail');
+    }
+    public function messages(){
+        return view('admin/messages');
+    }
+    public function tesp(){
+        return view('public/testimonials');
+    }
 }

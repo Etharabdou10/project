@@ -1,46 +1,39 @@
 <nav class="navbar navbar-expand-lg">
                 <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <i class="bi-back"></i>
+                        <span>Topic</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+    
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <a class="navbar-brand" href="index.html">
-                        <strong><span>Little</span> Fashion</strong>
-                    </a>
-
-                    <div class="d-lg-none">
-                        <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                        <a href="product-detail.html" class="bi-bag custom-icon"></a>
-                    </div>
-
+    
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="index.html">Home</a>
+                                <a class="nav-link" href="{{route('index')}}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">Story</a>
+                                <a class="nav-link " href="{{route('topics_list')}}">Topics Listing</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('email_create')}}">Contact Us</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="products.html">Products</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="faq.html">FAQs</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                                <a class="nav-link " href="{{route('testimonials.show')}}">Our Client Says</a>
                             </li>
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-
-                            <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                            <a href="../admin/register.html" class="navbar-icon bi-person smoothscroll"></a>
                         </div>
                     </div>
                 </div>
