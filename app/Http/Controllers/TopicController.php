@@ -100,13 +100,7 @@ class TopicController extends Controller
         return redirect()->route('topics.index');
     }
 
-    public function pub(string $id)
-    {
-        $topic = Topic::with('category')->findOrFail($id);
-        $categories = Category::select('id', 'category_name')->get();
-        return view('public/index', compact('topic', 'categories'));
-    }
-
+    
     public function toplist()
     {
         $topicsp = Topic::where('published', 1)->latest()->take(3)->get();

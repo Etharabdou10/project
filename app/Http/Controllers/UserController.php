@@ -35,7 +35,7 @@ class UserController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'username' => 'required|string|max:255|unique:users,username',
-            'password' => 'required|confirmed|min:2',
+            'password' => 'required|confirmed|min:8',
             
         ]);
 
@@ -69,7 +69,7 @@ class UserController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username,' . $user->id,
-            'password' => 'nullable|string|min:2',
+            'password' => 'nullable|string|min:8',
         ]);
 
         if (!empty($data['password'])) {
