@@ -54,20 +54,9 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         // Check if the user is active
-        if ($user->active == 1 && !is_null($user->email_verified_at)) {
-            // User is active and has verified their email, proceed with login
-            Auth::login($user); // Log the user in
-            return redirect()->intended('users'); // Redirect to intended page or dashboard
-        } else {
-            // Handle inactive or unverified email case
-            Auth::logout(); // Ensure the user is logged out
-            
-            // Determine which error message to display
-            $errorMessage = $user->active != 1 
-                ? 'Your account is inactive.' 
-                : 'Your email is not verified.';
-        
-            return redirect()->back()->withErrors(['login' => $errorMessage]);
+         if ($user->active == 0) {
+            Auth::logout(); // Log the user out
+            return redirect()->back()->withErrors(['active' => 'Your account is inactive.']);
         }
 
         // Continue with the default authenticated behavior
