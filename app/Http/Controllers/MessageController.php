@@ -22,30 +22,25 @@ class MessageController extends Controller
     public function create()
     {
         
-        return view('public/contact');
+        return view('public.contact');
     }
 
 
     public function sendEmail(Request $request)
     {
 
-
-        $data = $request->except('_token');
-        Mail::to('to@example.com')->send((new ContactMail($data)));
-
+        
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'subject' => 'required|string',
             'message' => 'required|string|max:1000',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
 
         ]);
-
+        Mail::to('to@example.com')->send((new ContactMail($data)));
         Message::create($data);
-        return redirect()->route('email_create')->with('success', 'Message sent successfully!');
+        return redirect()->route('email_create');
 
-        // return redirect()->route('messages.index');
-        // return "message sent successfully";
     }
 
 

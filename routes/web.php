@@ -21,18 +21,19 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=>true]);
 
-Route::middleware(['auth', 'verified'])->prefix('public')->group(function () {
-    // Browse page
-    Route::get('browse', [PublicController::class, 'browse'])->name('browse');
-    
-    // Salad page
-    Route::get('salad', [PublicController::class, 'salad'])->name('salad');
-    
+Route::prefix('public')->group(function () {
     // Topic details page
-    Route::get('topics/{id}/detail', [PublicController::class, 'topicsDetails'])->name('topicsDetails');
-    
+    Route::get('topics/{id}/detail', [PublicController::class, 'topicsDetails'])->name('topicsDetails'); 
     // Index page
-    Route::get('index', [PublicController::class, 'top'])->name('index');
+    Route::get('index', [PublicController::class, 'index'])->name('index');
+    // Custom route to show the list of topics
+    Route::get('topiclist', [TopicController::class, 'toplist'])->name('topics_list');
+    // Show testimonials page (if this is a different view)
+    Route::get('testimonialsp', [TestimonialController::class, 'show'])->name('testimonials.show');
+     // Display create message form
+     Route::get('contact', [MessageController::class, 'create'])->name('email_create');
+     // Send the email
+    Route::post('contact', [MessageController::class, 'sendEmail'])->name('send_email');
 });
 
 
@@ -59,8 +60,7 @@ Route::middleware(['auth', 'verified'])->prefix('topics')->group(function () {
     // Delete a specific topic
     Route::delete('{id}', [TopicController::class, 'forceDelete'])->name('topics.forceDelete');
     
-    // Custom route to show the list of topics
-    Route::get('topiclist', [TopicController::class, 'toplist'])->name('topics_list');
+    
 });
 
 Route::middleware(['auth', 'verified'])->prefix('categories')->group(function () {
@@ -102,8 +102,7 @@ Route::middleware(['auth', 'verified'])->prefix('testimonials')->group(function 
     // Delete a specific testimonial
     Route::delete('{id}', [TestimonialController::class, 'destroy'])->name('testimonials.forceDelete');
     
-    // Show testimonials page (if this is a different view)
-    Route::get('testimonialsp', [TestimonialController::class, 'show'])->name('testimonials.show');
+    
 });
 
 
@@ -128,11 +127,7 @@ Route::middleware(['auth', 'verified'])->prefix('users')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->prefix('contact')->group(function () {
-    // Display create message form
-    Route::get('create', [MessageController::class, 'create'])->name('email_create');
     
-    // Send the email
-    Route::post('/', [MessageController::class, 'sendEmail'])->name('send_email');
     
     // List all messages
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');

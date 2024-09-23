@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{route('index')}}">
                         <i class="bi-back"></i>
                         <span>Topic</span>
                     </a>
@@ -33,7 +33,7 @@
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="../admin/register.html" class="navbar-icon bi-person smoothscroll"></a>
+                            <a href=/register class="navbar-icon bi-person smoothscroll"></a>
                         </div>
                     </div>
                 </div>

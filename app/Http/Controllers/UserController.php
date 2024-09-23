@@ -36,6 +36,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'username' => 'required|string|max:255|unique:users,username',
             'password' => 'required|confirmed|min:2',
+            
         ]);
 
         $user = new User();
@@ -44,6 +45,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
+        $user->active = 1;
         $user->email_verified_at = Carbon::now();
         $user->save();
         return redirect()->route('users.index');
@@ -67,7 +69,7 @@ class UserController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username,' . $user->id,
-            'password' => 'nullable|string|confirmed|min:2',
+            'password' => 'nullable|string|min:2',
         ]);
 
         if (!empty($data['password'])) {

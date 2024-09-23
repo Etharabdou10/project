@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/users';
 
     /**
      * Create a new controller instance.
@@ -41,16 +42,24 @@ class LoginController extends Controller
     }
     public function username()
     {
-        return 'username'; 
+        return 'username';
     }
     protected function validateLogin(Request $request)
-{
-    $request->validate([
-        'username' => 'required|string', 
-        'password' => 'required|string',
-    ]);
-}
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        // Check if the user is active
+        if ($user->active == 0) {
+            Auth::logout(); // Log the user out
+            return redirect()->back()->withErrors(['active' => 'Your account is inactive.']);
+        }
 
-
-
+        // Continue with the default authenticated behavior
+        return redirect()->intended($this->redirectTo);
+    }
 }
